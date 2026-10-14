@@ -1,0 +1,48 @@
+
+     >>>>>>>>>>>>>>>> FRAME >>>>>>>>>>>>>>>>>
+    A frame is one rendered image of the game.
+    60 FPS(frame per second) is 60 images per second
+
+    Target frame rate = 1000 milliseconds / FPS (or 1 second / FPS)
+    e.g. t_f_r = 1000 / 60 = 16.67 ms
+    e.g. t_f_r = 1000 / 30 = 22.22 ms
+
+    i.e. At 60 FPS, we have approximately 16.67 milliseconds to process input,
+    update the world, and render a frame.
+
+     >>>> Instance vs Duration >>>>>>>>>>>>>>
+     Instant = stopwatch starting point.
+     Duration = time measured by the stopwatch.
+
+     One terminology correction: Instant::now() records a point in time;
+     .elapsed() measures the duration since that point.
+
+
+     >>>>>> Delta Time and Frame-Independent Movement >>>>>>>>>>>>>>>>>
+    -> Problem:
+       Imagine Kai moves 5 pixels every frame.
+
+       Case1: At 30 FPS -> 5 X 30 = 150 pixels/second
+       Case2: At 60 FPS -> 5 X 60 = 300 pixels/second
+       Case3: At 120 FPS -> 5 X 120 = 600 pixels/second
+
+       That would mean the character moves four times faster on a 120 FPS computer
+       than on a 30 FPS computer!
+
+        30 FPS                       60 FPS                          120 FPS
+        >>>>>>>>>>>>>>>>>>>>>>>>>>> | >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        1 frame per second 5 pxl    |   1 frame per second 5        |  1 frame per second 5
+        2 frame per second 10 pxl   |   2 frame per second 10 pxl   |  2 frame per second 10 pxl
+        3 frame per second 15 pxl   |   3 frame per second 15 pxl   |  3 frame per second 15 pxl
+        .                           |   .                           |  .
+        .                           |   .                           |  .
+        30 frame per second 150 pxl |   60 frame per second 300 pxl |  120 frame per second 600 pxl
+                                    |                               |
+        >>>>>>>>>>>>>>>>>>>>>>>>>>> | >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+      Delta Time (dt) is the amount of time that passed between two updates
+            Delta time (dt) = 1 / FPS
+        Distance  = Speed x dt
+
+
+

@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "arcforge"
+name = "arc-cli"
 version = "0.1.0"
